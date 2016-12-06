@@ -63,7 +63,7 @@ trait AuthenticatesUsers
     {
         $this->validate($request, [
             $this->username() => 'required', 'password' => 'required',
-            'g-recaptcha-response' => 'required', 'recaptcha', //@TODO: man rahi baraye ezafe kardan in khat bedoon dastkari core paeyda nakardam hanooz
+//            'g-recaptcha-response' => 'required', 'recaptcha', //@TODO: man rahi baraye ezafe kardan in khat bedoon dastkari core paeyda nakardam hanooz
         ]);
     }
 
