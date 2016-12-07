@@ -31,4 +31,11 @@ $(document).ready(function(){
         $(panel).toggleClass('faq-close').find('article').slideToggle();
     });
 
+    /*-----------------------------------------------------------------
+    - Slider
+    -----------------------------------------------------------------*/
+    $(".slides").responsiveSlides({
+        pager: true,
+    });
+
 });

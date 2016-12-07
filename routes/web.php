@@ -7,6 +7,9 @@
 |
 */
 
+// lang
+Route::group(['prefix' => '', 'middleware' => 'Subdomain'], function () {
+
 Route::get('test' , 'TestController@index');
 
 Route::group(['namespace' => 'Front'], function () {
@@ -268,6 +271,8 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 			Route::post('login_as' , 'UpstreamController@loginAs');
 		});
 	});
+});
+
 });
 
 /*

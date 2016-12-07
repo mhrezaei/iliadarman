@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Providers\EmailServiceProvider;
 use App\Providers\SettingServiceProvider;
+use App\Traits\GlobalControllerTrait;
 use App\Traits\TahaControllerTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Session;
 class FrontController extends Controller
 {
     use TahaControllerTrait;
+    use GlobalControllerTrait;
     public function __construct()
     {
 
@@ -25,7 +27,7 @@ class FrontController extends Controller
 
 	public function index()
 	{
-	    $front_slide = Post::findBySlug('persian_index_slide');
+	    $front_slide = Post::selector($this->domain() . '_slide_show')->get();
 		$features = Post::selector('features')->get();
 		$services = Post::selector('services')->get();
         $front_about = Post::findBySlug('persian_index_about');
