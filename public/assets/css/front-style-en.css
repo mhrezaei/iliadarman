@@ -3202,6 +3202,44 @@ select {
       overflow: hidden; }
 
 /*-----------------------------------------------------------------
+- File
+-----------------------------------------------------------------*/
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.inputfilelabel {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: table;
+  overflow: hidden;
+  border: 2px solid #e7e7e7; }
+  .inputfilelabel span {
+    display: table-cell;
+    width: 60%; }
+  .inputfilelabel strong {
+    display: table-cell;
+    width: 40%;
+    padding: 8px 10px;
+    text-align: center;
+    background: #00729C;
+    color: #ffffff;
+    transition: all 0.2s ease; }
+  .inputfilelabel:hover {
+    border-color: #00729C; }
+    .inputfilelabel:hover strong {
+      background: #005f83; }
+
+.inputfile + label * {
+  pointer-events: none; }
+
+/*-----------------------------------------------------------------
 - Dropdown
 -----------------------------------------------------------------*/
 .dropdown {
@@ -5003,7 +5041,7 @@ ul.tabs {
 .icon-align-center:before {
   content: ""; }
 
-.icon-align-right:before, section.panel.post .thumbnail:before, section.panel.post-item .thumbnail:before {
+.icon-align-right:before, section#services-image a.service section.panel article:before, section.panel.post .thumbnail:before, section.panel.post-item .thumbnail:before {
   content: ""; }
 
 .icon-align-justify:before {
@@ -7859,6 +7897,80 @@ section#services a.service:hover section.panel {
   border-radius: 30px 3px 30px 3px; }
 
 /*-----------------------------------------------------------------
+- Services image
+-----------------------------------------------------------------*/
+section#services-image a.service {
+  display: inline-block;
+  opacity: 1;
+  vertical-align: middle;
+  margin-bottom: 30px; }
+  section#services-image a.service section.panel {
+    transition: all 0.2s ease;
+    margin-bottom: 0; }
+    section#services-image a.service section.panel article {
+      padding: 0;
+      text-align: center;
+      overflow: hidden;
+      position: relative; }
+      section#services-image a.service section.panel article img {
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+        transition: all 0.5s ease; }
+      section#services-image a.service section.panel article .title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #ffffff;
+        opacity: 0;
+        position: absolute;
+        right: 50%;
+        bottom: -20px;
+        -webkit-transform: translateX(50%);
+            -ms-transform: translateX(50%);
+                transform: translateX(50%);
+        white-space: nowrap;
+        transition: all 0.2s ease;
+        z-index: 500; }
+      section#services-image a.service section.panel article:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 100;
+        opacity: 0;
+        transition: all 0.2s ease; }
+      section#services-image a.service section.panel article:before {
+        font-family: FontAwesome;
+        position: absolute;
+        top: 15%;
+        right: 50%;
+        -webkit-transform: translate(50%, -50%);
+            -ms-transform: translate(50%, -50%);
+                transform: translate(50%, -50%);
+        font-size: 2rem;
+        color: #ffffff;
+        z-index: 200;
+        font-weight: 300;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        opacity: 0;
+        transition: all 0.2s ease; }
+  section#services-image a.service:hover section.panel article:after {
+    opacity: 1; }
+  section#services-image a.service:hover section.panel article:before {
+    top: 30%;
+    opacity: 1; }
+  section#services-image a.service:hover section.panel article .title {
+    bottom: 40px;
+    opacity: 1; }
+  section#services-image a.service.service-hover {
+    opacity: 0.5; }
+
+/*-----------------------------------------------------------------
 - Banner
 -----------------------------------------------------------------*/
 section#banner {
@@ -8270,6 +8382,15 @@ section.panel.ticket-message header {
     background: #000000; }
   .product.light {
     background: #ededed; }
+  .product.product-image {
+    padding: 0;
+    height: auto;
+    background: none !important; }
+    .product.product-image img {
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+      border-radius: 10px; }
 
 /*-----------------------------------------------------------------
 - Single Product
@@ -8278,6 +8399,15 @@ section.panel.ticket-message header {
   margin: -70px auto 0;
   max-width: 400px;
   text-align: left; }
+  .single-product .product-header.product-image {
+    padding: 0;
+    height: auto;
+    background: none; }
+    .single-product .product-header.product-image img {
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+      border-radius: 10px; }
 
 .single-product .product-desc {
   margin-top: 100px; }

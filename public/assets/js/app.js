@@ -28,7 +28,10 @@ $(document).ready(function(){
     $('.panel.faq header').on('click', function (e) {
         e.preventDefault();
         var panel = $(this).closest('section.panel');
-        $(panel).toggleClass('faq-close').find('article').slideToggle();
+        $('.panel.faq').each(function (index, value) {
+            $(this).addClass('faq-close').find('article').slideUp();
+        });
+        $(panel).removeClass('faq-close').find('article').slideToggle();
     });
 
     /*-----------------------------------------------------------------
@@ -36,6 +39,40 @@ $(document).ready(function(){
     -----------------------------------------------------------------*/
     $(".slides").responsiveSlides({
         pager: true,
+    });
+
+    /*-----------------------------------------------------------------
+    - File input label
+    -----------------------------------------------------------------*/
+    var inputs = document.querySelectorAll( '.inputfile' );
+    Array.prototype.forEach.call( inputs, function( input )
+    {
+        var label	 = input.nextElementSibling,
+            labelVal = label.innerHTML;
+
+        input.addEventListener( 'change', function( e )
+        {
+            var fileName = '';
+            if( this.files && this.files.length > 1 )
+                fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+            else
+                fileName = e.target.value.split( '\\' ).pop();
+
+            if( fileName )
+                label.querySelector( 'span' ).innerHTML = fileName;
+            else
+                label.innerHTML = labelVal;
+        });
+    });
+
+    /*-----------------------------------------------------------------
+    - Black and white
+    -----------------------------------------------------------------*/
+    $('#services-image a.service').mouseenter(function(){
+        $('#services-image a.service').not(this).addClass('service-hover');
+    });
+    $('#services-image a.service').mouseleave(function(){
+        $('#services-image a.service').removeClass('service-hover');
     });
 
 });

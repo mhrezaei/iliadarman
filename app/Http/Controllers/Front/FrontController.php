@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\User;
 use App\Providers\EmailServiceProvider;
 use App\Providers\SettingServiceProvider;
@@ -27,11 +28,20 @@ class FrontController extends Controller
 
 	public function index()
 	{
-	    $front_slide = Post::selector($this->domain() . '_slide_show')->get();
-		$features = Post::selector('features')->get();
-		$services = Post::selector('services')->get();
-        $front_about = Post::findBySlug('persian_index_about');
-	    return view('front.persian.home.0', compact('front_slide', 'features', 'services', 'front_about'));
+	    $front_slide = Post::selector($this->domain() . '-slide_show')->get();
+        $features = Post::selector($this->domain() . '-features')->get();
+		$services = Post::selector($this->domain() . '-services')->get();
+		$portfolio = Post::selector($this->domain() . '-portfolio')->get();
+        $front_about = Post::findBySlug($this->domain() . '-index_about');
+        if (SettingServiceProvider::isLocale('en'))
+        {
+            $products = Post::selector('en-products')->get();
+        }
+        else
+        {
+            $products = Product::all();
+        }
+	    return view('front.persian.home.0', compact('front_slide', 'features', 'services', 'front_about', 'products', 'portfolio'));
 	}
 
 	public function register(Requests\Front\AccountSaveRequest $request)
@@ -110,7 +120,7 @@ class FrontController extends Controller
         }
         else
         {
-            $page = Post::findBySlug($slug);
+            $page = Post::findBySlug($this->domain() . '-' . $slug);
         }
 
         if (! $page)
@@ -126,17 +136,35 @@ class FrontController extends Controller
 
     public function faq()
     {
-        $faq = Post::selector('faq')->orderBy('title', 'asc')->get();
+        $faq = Post::selector($this->domain() . '-faq')->orderBy('title', 'asc')->get();
         return view('front.persian.faq.0', compact('faq'));
     }
 
     public function news()
     {
-        $news = Post::selector('news')
+        $news = Post::selector($this->domain() . '-news')
             ->where('published_at', '<=', Carbon::now()->toDateTimeString())
             ->orderBy('published_at', 'desc')
             ->paginate(20);
         return view('front.persian.news.0', compact('news'));
+    }
+
+    public function products()
+    {
+        if (SettingServiceProvider::isLocale('en'))
+        {
+            $products = Post::selector('en-products')->get();
+        }
+        else
+        {
+            $products = Product::all();
+        }
+        return view('front.persian.products.0', compact('products'));
+    }
+
+    public function show_products($id)
+    {
+        return redirect(url('/'));
     }
 
 	/*
