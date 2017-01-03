@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\User;
 use App\Providers\EmailServiceProvider;
+use App\Providers\ServicesMenuServiceProvider;
 use App\Providers\SettingServiceProvider;
 use App\Traits\GlobalControllerTrait;
 use App\Traits\TahaControllerTrait;
@@ -31,17 +33,10 @@ class FrontController extends Controller
 	    $front_slide = Post::selector($this->domain() . '-slide_show')->get();
         $features = Post::selector($this->domain() . '-features')->get();
 		$services = Post::selector($this->domain() . '-services')->get();
-		$portfolio = Post::selector($this->domain() . '-portfolio')->get();
+		$categories = ServicesMenuServiceProvider::get();
         $front_about = Post::findBySlug($this->domain() . '-index_about');
-        if (SettingServiceProvider::isLocale('en'))
-        {
-            $products = Post::selector('en-products')->get();
-        }
-        else
-        {
-            $products = Product::all();
-        }
-	    return view('front.persian.home.0', compact('front_slide', 'features', 'services', 'front_about', 'products', 'portfolio'));
+        $products = null;
+	    return view('front.persian.home.0', compact('front_slide', 'features', 'services', 'front_about', 'categories', 'products'));
 	}
 
 	public function register(Requests\Front\AccountSaveRequest $request)
@@ -149,17 +144,14 @@ class FrontController extends Controller
         return view('front.persian.news.0', compact('news'));
     }
 
-    public function products()
+    public function products($category)
     {
-        if (SettingServiceProvider::isLocale('en'))
-        {
-            $products = Post::selector('en-products')->get();
-        }
-        else
-        {
-            $products = Product::all();
-        }
-        return view('front.persian.products.0', compact('products'));
+
+        $category = Category::find($category);
+        $products = Post::where('category_id', $category->id)
+            ->orderBy('published_at', 'desc')
+            ->paginate(20);
+        return view('front.persian.products.0', compact('products', 'category'));
     }
 
     public function show_products($id)

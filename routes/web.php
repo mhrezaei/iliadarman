@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Front', 'middleware' => ['Subdomain', 'UserIpDetec
     Route::get('/contact', 'FrontController@contact');
     Route::get('/faq', 'FrontController@faq');
     Route::get('/news', 'FrontController@news');
-    Route::get('/products', 'FrontController@products');
+    Route::get('/products/{category}', 'FrontController@products');
     Route::get('/products/show/{id}', 'FrontController@show_products');
 
     Route::group(['middleware' => 'auth'], function (){

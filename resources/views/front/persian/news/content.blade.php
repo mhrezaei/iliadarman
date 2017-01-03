@@ -1,5 +1,5 @@
 <div class="page-bg">
-    <div class="part-title"> {{ trans('front.faq') }} </div>
+    <div class="part-title"> {{ trans('front.news') }} </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-center">

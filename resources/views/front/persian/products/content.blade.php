@@ -1,22 +1,32 @@
-@if($products)
 <div class="page-bg">
-    <div class="part-title"> {{ trans('front.products') }} </div>
+    <div class="part-title"> {{ $category->title }} </div>
     <div class="container">
         <div class="row">
-            @foreach($products as $product)
-                {{ $product->spreadMeta() }}
-                <div class="col-sm-4">
-                    <a href="{{ url('/products/show/' . $product->id) }}" class="product {{ $product->color_code }}">
-                        <h1 class="title"> {{ $product->title }} </h1>
-                        <div class="text">
-                            <p>{!! $product->description !!}</p>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-center">
+                <div class="page-content">
+                    <div class="row">
+                        @if($products)
+                            @foreach($products as $product)
+                        <div class="col-sm-4">
+                            <section class="panel post-item">
+                                <a href="{{ $product->say('link') }}" class="thumbnail"><img src="{{ $product->say('featured_image') }}"></a>
+                                <div class="content"> <a href="{{ $product->say('link') }}" class="title"> {{ $product->say('title') }} </a>
+                                    <p class="excerpt">{!! $product->say('abstract') !!}</p>
+                                </div>
+                            </section>
                         </div>
-                        <span class="value">@pd(number_format($product->initial_charge))</span>
-                        <span class="price"> @pd(number_format($product->card_price)) {{ trans('front.toman') }}</span>
-                    </a>
+                            @endforeach
+                        @else
+                            <div class="alert red">
+                                <p>{{ trans('front.no_data') }}</p>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="row" style="text-align: center; margin: 0 auto;">
+                        {!! $products->render() !!}
+                    </div>
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
 </div>
-@endif

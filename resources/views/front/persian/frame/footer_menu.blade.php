@@ -2,6 +2,6 @@
 <div class="simple-links">
     <a href="{{ url('/contact') }}"> {{ trans('front.contact_us') }}</a>
     <a href="{{ url('/pages/about_page') }}"> {{ trans('front.about') }}</a>
-    <a href="{{ url('/pages/privacy') }}">{{ trans('front.privacy') }}</a>
-    <a href="{{ url('/faq') }}"> {{ trans('front.faq') }} </a>
+    <a href="{{ url('/pages/packing') }}">{{ trans('front.packing') }}</a>
+    <a href="{{ url('/news') }}"> {{ trans('front.news') }} </a>
 </div>

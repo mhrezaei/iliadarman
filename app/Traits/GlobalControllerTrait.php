@@ -42,7 +42,7 @@ trait GlobalControllerTrait
             $result = 'fa';
         }
 
-        $subdomain = 'en';
+//        $result = 'ar';
         return $result;
     }
 

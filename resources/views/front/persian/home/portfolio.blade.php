@@ -1,14 +1,14 @@
 <!-- Portfolio -->
-@if(sizeof($portfolio))
+@if(sizeof($categories))
 <section id="services-image">
-    <div class="part-title"> {{ $portfolio[0]->branch()->plural_title }} </div>
+    <div class="part-title"> {{ $categories[0]->branch->plural_title }} </div>
     <div class="row">
-        @foreach($portfolio as $porto)
+        @foreach($categories as $category)
         <div class="col-sm-3">
-            <a href="{{ url('/post/' . $porto->branch . '/' . $porto->id) }}" class="service">
+            <a href="{{ url('/products/' . $category->id) }}" class="service">
                 <section class="panel">
-                    <article> <img src="{{ $porto->say('featured_image') }}">
-                        <div class="title"> {{ $porto->title }} </div>
+                    <article> <img src="{{ $category->image }}">
+                        <div class="title"> {{ $category->title }} </div>
                     </article>
                 </section>
             </a>

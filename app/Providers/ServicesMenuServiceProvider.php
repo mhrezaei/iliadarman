@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Traits\GlobalControllerTrait;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,21 @@ class ServicesMenuServiceProvider extends ServiceProvider
 
     public static function get()
     {
-        return Post::selector(self::domain() . '-services')->get();
+        if (SettingServiceProvider::getLocale() == 'fa')
+        {
+            return Category::where('branch_id', 15)->get();
+        }
+        elseif (SettingServiceProvider::getLocale() == 'en')
+        {
+            return Category::where('branch_id', 12)->get();
+        }
+        elseif (SettingServiceProvider::getLocale() == 'ar')
+        {
+            return Category::where('branch_id', 17)->get();
+        }
+        else
+        {
+            return Category::where('branch_id', 15)->get();
+        }
     }
 }
