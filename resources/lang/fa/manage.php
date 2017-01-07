@@ -1,6 +1,6 @@
 <?php
 return [
-		'page_title' => 'صرافی میهن',
+		'page_title' => 'ایلیا درمان',
 		'index' => 'پیشخوان' ,
 		'logout' => 'خروج' ,
 		'grid_count' => 'در حال نمایش :rows سطر از مجموع :total سطر موجود اطلاعات'  ,

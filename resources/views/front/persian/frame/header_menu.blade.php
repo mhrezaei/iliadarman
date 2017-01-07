@@ -16,7 +16,7 @@
                     </ul>
                 </li>
                 @endif
-                <li><a href="{{ url('/pages/packing') }}"> {{ trans('front.packing') }} </a></li>
+                <li><a href="{{ url('/pages/certificate') }}"> {{ trans('front.certificate') }} </a></li>
 {{--                <li><a href="{{ url('/faq') }}"> {{ trans('front.faq') }} </a></li>--}}
                 <li><a href="{{ url('/news') }}"> {{ trans('front.news') }} </a></li>
                 <li><a href="{{ url('/contact') }}"> {{ trans('front.contact_us') }}</a></li>
