@@ -17,6 +17,8 @@ return [
 		'invalid'			=> 'درخواست معتبر نیست',
 		'phone'             => ':attribute درست وارد نشده است.',
 		'code_melli'        => ":attribute درست وارد نشده است.",
+		'forbidden_chars' => ":attribute شامل کاراکتر غیرمجاز است.",
+		'required_chars' => ":attribute یک یا چند کاراکتر الزامی را ندارد.",
 		'time'           => ":attribute درست وارد نشده است.",
 		'shetab'           => ":attribute درست وارد نشده است.",
 		'national_id'        => ":attribute درست وارد نشده است.",

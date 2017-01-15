@@ -3,7 +3,7 @@
 @section('page_title' , trans('manage.page_title'))
 
 @section('section')
-	@include('manage.index.hello')
+	{{--@include('manage.index.hello')--}}
 
 	<div class="row">
 		@foreach($digests as $digest)

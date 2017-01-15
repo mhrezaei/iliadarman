@@ -30,7 +30,7 @@ class FrontController extends Controller
 
 	public function index()
 	{
-	    $front_slide = Post::selector($this->domain() . '-slide_show')->get();
+	    $front_slide = Post::selector($this->domain() . '-slide-show')->get();
         $features = Post::selector($this->domain() . '-features')->get();
 		$services = Post::selector($this->domain() . '-services')->get();
 		$categories = ServicesMenuServiceProvider::get();

@@ -8,13 +8,13 @@ return [
     'give_card' => 'دریافت کارت',
     'our_services' => 'خدمات ما',
     'login_signup' => 'ورود / ثبت‌نام',
-    'about' => 'معرفی',
+    'about' => 'تیم ما',
     'privacy' => 'حریم شخصی',
     'faq' => 'سوالات رایج',
     'news' => 'خبرها',
     'products' => 'محصولات',
     'packing' => 'بسته بندی',
-    'certificate' => 'مجوز ها',
+    'certificate' => 'همکاری',
     'contact_us' => 'تماس با ما',
     'no_data' => 'مطلبی جهت نمایش در این صفحه ثبت نشده است.',
     'term_of_service' => 'شرایط و قوانین سایت را می‌پذیرم',
@@ -42,11 +42,5 @@ return [
     'persian'=> 'فارسی',
     'english' => 'English',
     'arabic' => 'العربیة',
-
-
-
-
-
-
 
 ];
